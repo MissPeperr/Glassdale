@@ -1,51 +1,28 @@
-import { getNotes, useNotes } from "./NotesProvider.js"
+// gonna need to know about the function that makes a single note in HTML
+// gonna need to know about the notes from the API
 import { Note } from "./Note.js"
+import { useNotes } from "./NotesProvider.js"
 
-const contentTarget = document.querySelector(".notesContainer")
 const eventHub = document.querySelector(".container")
+const notesContainer = document.querySelector(".notesContainer")
 
-/*
-    State variables
-*/
-let visibility = false
-
-/*
-    Event handlers
-*/
-eventHub.addEventListener("noteStateChanged", customEvent => {
+eventHub.addEventListener("noteStateChanged", (theCustomEvent) => {
     render()
-})
-
-eventHub.addEventListener("allNotesClicked", customEvent => {
-    visibility = !visibility
-
-    if (visibility) {
-        contentTarget.classList.remove("invisible")
-    }
-    else {
-        contentTarget.classList.add("invisible")
-    }
 })
 
 const render = () => {
-    if (visibility) {
-        contentTarget.classList.remove("invisible")
+    // should get the note data & put it on the DOM
+    const notesArray = useNotes()
+    
+    notesContainer.innerHTML = ""
+    
+    for (const noteObj of notesArray) {
+        notesContainer.innerHTML += Note(noteObj)
     }
-    else {
-        contentTarget.classList.add("invisible")
-    }
-
-    getNotes().then(() => {
-        const allTheNotes = useNotes()
-
-        contentTarget.innerHTML = allTheNotes.map(
-            currentNoteObject => {
-                return Note(currentNoteObject)
-            }
-        ).join("")
-    })
 }
 
-export const NotesList = () => {
+const NotesList = () => {
     render()
 }
+
+export default NotesList

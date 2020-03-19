@@ -2,6 +2,9 @@ let notes = []
 
 const eventHub = document.querySelector(".container")
 
+/*
+    Sends a message out to the application via eventHub that the state of the notes was changed
+*/
 const dispatchStateChangeEvent = () => {
     const noteStateChangedEvent = new CustomEvent("noteStateChanged")
 
@@ -9,12 +12,15 @@ const dispatchStateChangeEvent = () => {
 }
 
 /*
-    Allow other modules to get a copy of the application state
+    Returns the copy of the notes data
 */
-export const useNotes = () => notes.sort((c,n) => n.timestamp - c.timestamp).slice()
+export const useNotes = () => {
+    return notes.slice()
+}
+
 
 /*
-    Get the state of the notes from the API into the application
+    Fetches (GETs) all notes data
 */
 export const getNotes = () => {
     return fetch('http://localhost:8088/notes')
@@ -24,13 +30,16 @@ export const getNotes = () => {
         })
 }
 
-export const saveNote = note => {
-    return fetch('http://localhost:8088/notes', {
+/*
+    Creates (POSTs) a new note in the API
+*/
+export const saveNote = noteObj => {
+    fetch('http://localhost:8088/notes', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(note)
+        body: JSON.stringify(noteObj)
     })
     .then(getNotes)
     .then(dispatchStateChangeEvent)

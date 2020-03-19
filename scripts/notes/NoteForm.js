@@ -1,33 +1,16 @@
-import { saveNote } from "./NotesProvider.js"
+import {saveNote} from "./NotesProvider.js"
 
 const contentTarget = document.querySelector(".noteFormContainer")
-const eventHub = document.querySelector(".container")
-
-let visibility = false
-
-eventHub.addEventListener("noteFormButtonClicked", customEvent => {
-    visibility = !visibility
-
-    if (visibility) {
-        contentTarget.classList.remove("invisible")
-    }
-    else {
-        contentTarget.classList.add("invisible")
-    }
-})
 
 // Handle browser-generated click event in component
-contentTarget.addEventListener("click", clickEvent => {
+contentTarget.addEventListener("click", (clickEvent) => {
     if (clickEvent.target.id === "saveNote") {
-
-        const noteText = document.querySelector("#noteText").value
-        const criminalName = document.querySelector("#criminal").value
 
         // Make a new object representation of a note
         const newNote = {
-            noteText: noteText,
-            criminal: criminalName,
-            timestamp: Date.now()
+            // Key/value pairs here
+            note: document.querySelector("#note-text_note").value,
+            criminal: document.querySelector("#note-text_criminal").value
         }
 
         // Change API state and application state
@@ -36,21 +19,25 @@ contentTarget.addEventListener("click", clickEvent => {
 })
 
 const render = () => {
-    contentTarget.classList.add("invisible")
     contentTarget.innerHTML = `
-        <fieldset>
-            <label class="label label--notes" for="noteText">Note:</label>
-            <textarea id="noteText"></textarea>
-        </fieldset>
-        <fieldset>
-            <label class="label label--notes" for="criminal">Criminal:</label>
-            <input type="text" id="criminal">
-        </fieldset>
-
+    <div>
+        <form>
+            <fieldset>
+                <label>Note:</label>
+                <input type="text" id="note-text_note">
+            </fieldset>
+            <fieldset>
+                <label>Criminal:</label>
+                <input type="text" id="note-text_criminal">
+            </fieldset>
+        </form>
         <button id="saveNote">Save Note</button>
+    </div>
     `
 }
 
-export const NoteForm = () => {
+const NoteForm = () => {
     render()
 }
+
+export default NoteForm

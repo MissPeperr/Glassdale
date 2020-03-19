@@ -1,46 +1,29 @@
 {
   "notes": [
     {
-      "id": 1,
-      "noteText": "This person seems suspicious",
-      "timestamp": 1584382255712,
-      "criminal": "Taurean Bins"
+      "note": "pls work",
+      "criminal": "Jordane West",
+      "id": 1
     },
     {
-      "noteText": "Madi is suspicious",
-      "criminal": "Madi Peper",
-      "timestamp": 1584384742515,
+      "note": "we postin'",
+      "criminal": "Adrienne Howell",
+      "id": 2
+    },
+    {
+      "note": "howdy",
+      "criminal": "Michel Stamm",
       "id": 3
     },
     {
-      "noteText": "Too clever for his own good",
-      "criminal": "Parker",
-      "timestamp": 1584459174513,
+      "note": "clear it out please!",
+      "criminal": "Nathanael Champlin",
       "id": 4
     },
     {
-      "noteText": "Too stylish to have committed this crime",
-      "criminal": "Adrienne Howell",
-      "timestamp": 1584459470592,
+      "note": "All the notes!! 👍",
+      "criminal": "Rogelio Hills",
       "id": 5
-    },
-    {
-      "noteText": "nvefj iojebvio be2iov b2e",
-      "criminal": "Madelyn Lebsack",
-      "timestamp": 1584478027188,
-      "id": 6
-    },
-    {
-      "noteText": "test",
-      "criminal": "joe",
-      "timestamp": 1584486536078,
-      "id": 7
-    },
-    {
-      "noteText": "Foo",
-      "criminal": "Fanny",
-      "timestamp": 1584486663550,
-      "id": 8
     }
   ]
 }
